@@ -1,7 +1,8 @@
 const { connection } = require("./DATABASE/connection");
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-require("dotenv").config();
+
 console.log("Api started");
 
 connection();
