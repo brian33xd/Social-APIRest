@@ -7,7 +7,7 @@ console.log("Api started");
 connection();
 
 const app = express();
-const port = 777;
+const port = process.env.PORT || 3900;
 
 app.use(cors());
 
