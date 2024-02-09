@@ -23,9 +23,9 @@ app.get("/Test", (req, res) => {
   });
 });
 
-const userRouter = require("../api-rest-Red-Social/routes/user");
-const followRouter = require("../api-rest-Red-Social/routes/follow");
-const publicationRouter = require("../api-rest-Red-Social/routes/publication");
+const userRouter = require("./routes/user");
+const followRouter = require("./routes/follow");
+const publicationRouter = require("./routes/publication");
 
 app.use("/api/user", userRouter);
 app.use("/api/follow", followRouter);
