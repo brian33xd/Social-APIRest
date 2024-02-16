@@ -330,6 +330,36 @@ const counters = async (req, res) => {
     });
   }
 };
+
+const search = (req, res) => {
+  let query = req.params.query;
+
+  //Buscar con Find
+  let usersLists = User.find({
+    $or: [
+      { name: { $regex: query, $options: "i" } },
+      { surname: { $regex: query, $options: "i" } },
+    ],
+  });
+  //Ordenarlos
+  usersLists
+    .sort({ date: -1 })
+    .then((articulos) => {
+      return res.status(200).json({
+        status: "success",
+        mensaje: "Here are the results of your search",
+        articulos,
+      });
+    })
+    .catch((error, articulos) => {
+      if (error || !articulos || articulos <= 0) {
+        return res.status(404).json({
+          status: "error",
+          mensaje: "This search has no result of : " + query,
+        });
+      }
+    });
+};
 module.exports = {
   register,
   login,
@@ -339,4 +369,5 @@ module.exports = {
   upload,
   avatar,
   counters,
+  search,
 };

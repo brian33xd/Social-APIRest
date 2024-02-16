@@ -27,5 +27,6 @@ router.post(
 );
 router.get("/avatar/:name", userController.avatar);
 router.get("/counters/:id", check.auth, userController.counters);
+router.get("/search/:query", check.auth, userController.search);
 
 module.exports = router;
