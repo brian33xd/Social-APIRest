@@ -46,6 +46,13 @@ const register = (req, res) => {
 
     user_to_save
       .save()
+      .then((IntegrateUserDB) => {
+        return res.status(200).json({
+          status: "success",
+          message: "User has been created succesfully",
+          user: IntegrateUserDB,
+        });
+      })
       .catch((err, IntegrateUserDB) => {
         if (err || !IntegrateUserDB) {
           return res.status(500).send({
@@ -53,13 +60,6 @@ const register = (req, res) => {
             message: "User cannot be saved",
           });
         }
-      })
-      .then((IntegrateUserDB) => {
-        return res.status(200).json({
-          status: "success",
-          message: "User has been created succesfully",
-          user: IntegrateUserDB,
-        });
       });
   });
 };
